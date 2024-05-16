@@ -1,96 +1,46 @@
+# Getting Started with Create React App
 
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>숫자 맞히기 게임</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-        #guessInput {
-            width: 50px;
-        }
-        #guessSubmit {
-            margin-top: 10px;
-        }
-        #message {
-            margin-top: 10px;
-        }
-    </style>
-</head>
-<body>
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-<h1>숫자 맞히기 게임</h1>
-<p>1에서 100 사이의 숫자를 추측하세요:</p>
+## Available Scripts
 
-<label for="guessInput">입력: </label>
-<input type="text" id="guessInput" class="guessField">
-<input type="submit" value="확인" class="guessSubmit" id="guessSubmit">
+In the project directory, you can run:
 
-<div id="message"></div>
+### `npm start`
 
-<script>
-    // 컴퓨터가 선택한 숫자 생성
-    const randomNumber = Math.floor(Math.random() * 100) + 1;
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-    // 게임 상태를 추적하기 위한 변수
-    let guesses = [];
-    let attempts = 0;
-    let isGameOver = false;
+The page will reload if you make edits.\
+You will also see any lint errors in the console.
 
-    const guessSubmit = document.getElementById('guessSubmit');
-    const message = document.getElementById('message');
+### `npm test`
 
-    function checkGuess() {
-        const guess = parseInt(document.getElementById('guessInput').value);
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-        if (isNaN(guess) || guess < 1 || guess > 100) {
-            alert('1에서 100 사이의 숫자를 입력하세요!');
-            return;
-        }
+### `npm run build`
 
-        // 이전 추측 기록에 추가
-        guesses.push(guess);
-        attempts++;
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-        // 추측한 숫자 확인
-        if (guess === randomNumber) {
-            gameOver(true);
-        } else {
-            if (attempts === 10) {
-                gameOver(false);
-            } else {
-                const hint = guess < randomNumber ? '더 큰 숫자를 추측하세요!' : '더 작은 숫자를 추측하세요!';
-                displayMessage(`틀렸습니다! ${hint} 남은 시도 횟수: ${10 - attempts}`);
-            }
-        }
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
 
-        document.getElementById('guessInput').value = ''; // 입력 필드 초기화
-        document.getElementById('guessInput').focus(); // 입력 필드로 포커스 이동
-    }
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-    function displayMessage(msg) {
-        message.textContent = msg;
-    }
+### `npm run eject`
 
-    function gameOver(win) {
-        if (win) {
-            displayMessage(`축하합니다! ${randomNumber}을(를) 맞추셨습니다! 시도 횟수: ${attempts}`);
-        } else {
-            displayMessage(`게임 종료! 정답은 ${randomNumber}입니다.`);
-        }
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-        isGameOver = true;
-        guessSubmit.disabled = true;
-    }
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-    guessSubmit.addEventListener('click', function() {
-        if (!isGameOver) {
-            checkGuess();
-        }
-    });
-</script>
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-</body>
-</html>
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
