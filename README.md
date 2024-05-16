@@ -61,7 +61,8 @@
             if (attempts === 10) {
                 gameOver(false);
             } else {
-                displayMessage(`틀렸습니다! 남은 시도 횟수: ${10 - attempts}`);
+                const hint = guess < randomNumber ? '더 큰 숫자를 추측하세요!' : '더 작은 숫자를 추측하세요!';
+                displayMessage(`틀렸습니다! ${hint} 남은 시도 횟수: ${10 - attempts}`);
             }
         }
 
